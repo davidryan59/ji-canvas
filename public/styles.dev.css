@@ -1,0 +1,52 @@
+.app {
+  border: 2px black dashed;
+}
+
+.buttonBar {
+  border: 2px pink solid;
+}
+
+.buttonCell {
+  border: 1px pink dashed;
+}
+
+.StateViewer {
+  border: 2px lightblue solid;
+}
+
+.mainTable {
+  border: 2px lightgreen solid;
+}
+
+.tableHeader {
+  border: 2px blue solid;
+  font-weight: bold;
+}
+
+.headerCell {
+  border: 1px blue dashed;
+}
+
+.tableBody {
+  border: 2px red solid;
+}
+
+.tableRow {
+  border: 1px magenta solid;
+}
+
+.tableCell {
+  border: 1px blue solid;
+}
+
+.tableSubPad {
+  padding: 2px;
+}
+
+.tableSubCellGroup {
+  border: 1px cyan solid;
+}
+
+.tableSubCell {
+  border: 1px green dotted;
+}

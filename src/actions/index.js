@@ -11,6 +11,16 @@ export const addNote = () => ({
   noteId: nextNoteId++
 })
 
+export const playNote = ({idx}) => ({
+  type: 'PLAY_NOTE',
+  idx
+})
+
+export const pauseNote = ({idx}) => ({
+  type: 'PAUSE_NOTE',
+  idx
+})
+
 export const dupNote = ({noteId}) => ({
   type: 'DUP_NOTE',
   noteId,

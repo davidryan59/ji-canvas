@@ -7,7 +7,7 @@ import { unlockInput, setInputBox } from '../actions'
 
 import InputBoxC from './InputBoxC'
 
-const NoteTableRow = ({idx, len, row, dupNote, delNote, moveDown, moveUp}) => (
+const NoteTableRow = ({idx, len, row, playNote, pauseNote, dupNote, delNote, moveDown, moveUp}) => (
   <Row className='tableRow'>
     <Column className='tableCell' flex={flexValues.noteId} horizontal='center' vertical='center'>
       <span>{row.noteId}</span>
@@ -50,11 +50,11 @@ const NoteTableRow = ({idx, len, row, dupNote, delNote, moveDown, moveUp}) => (
     </Column>
     <Column className='tableCell' flex={flexValues.actions} horizontal='center' vertical='center'>
       <Row>
-        <button className='play'>
+        <button className='play' onClick={playNote}>
           &#x25b6;
         </button>
         &nbsp;
-        <button className='pause'>
+        <button className='pause' onClick={pauseNote}>
           ||
         </button>
         &nbsp;&nbsp;&nbsp;

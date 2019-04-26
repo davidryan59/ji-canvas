@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   playNote: () => dispatch(playNote({idx: ownProps.idx})),
   pauseNote: () => dispatch(pauseNote({idx: ownProps.idx})),
   dupNote: () => dispatch(dupNote({idx: ownProps.idx})),
-  delNote: () => dispatch(delNote({noteId: ownProps.row.noteId})),
+  delNote: () => dispatch(delNote({idx: ownProps.idx})),
   moveDown: () => dispatch(moveDown({idx: ownProps.idx})),
   moveUp: () => dispatch(moveDown({idx: ownProps.idx - 1}))
 })

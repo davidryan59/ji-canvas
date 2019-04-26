@@ -32,7 +32,7 @@ const noteTable = (state = [], action) => {
         }, []
       )
     case 'DEL_NOTE':
-      return state.filter( tRow => (tRow.noteId !== action.noteId) )
+      return state.filter( (tRow, idx) => (idx !== action.idx) )
     default:
       return state
   }

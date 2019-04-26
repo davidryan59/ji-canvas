@@ -27,9 +27,9 @@ export const dupNote = ({idx}) => ({
   newNoteId: nextNoteId++
 })
 
-export const delNote = ({noteId}) => ({
+export const delNote = ({idx}) => ({
   type: 'DEL_NOTE',
-  noteId
+  idx
 })
 
 export const moveDown = ({idx}) => ({

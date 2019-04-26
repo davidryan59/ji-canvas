@@ -5,7 +5,7 @@ const inputBox = (state = {}, action, inputName, getInitialVal, validateInput) =
     case 'ADD_NOTE':
       return {
         val: getInitialVal(),
-        editing: true
+        editing: undefined
       }
     case 'UNLOCK':
       if (inputName !== action.inputName) return state
@@ -35,28 +35,28 @@ export const noteId = (state = -1, action) => {
   }
 }
 
-const startTimeIncrement = 100
-let nextStartTimeMs = -startTimeIncrement
+const startTimeIncrement = 80
+let nextStartTimeMs = 0
 export const startMs = (state, action) => inputBox(state, action,
   'startMs',
-  () => nextStartTimeMs += startTimeIncrement,
+  () => nextStartTimeMs += startTimeIncrement * Math.floor(1 + 4 * Math.random()),
   validateStartMs
 )
 
 export const lenMs = (state, action) => inputBox(state, action,
   'lenMs',
-  () => 100 * Math.floor(1 + 10 * Math.random()),
+  () => 200 * Math.floor(1 + 4 * Math.random()),
   validateLenMs
 )
 
 export const freqHz = (state, action) => inputBox(state, action,
   'freqHz',
-  () => 60 * Math.floor(3 + 7 * Math.random()),
+  () => 15 * Math.floor(3 + 64 * Math.random()),
   validateFreqHz
 )
 
 export const volDb = (state, action) => inputBox(state, action,
   'volDb',
-  () => Math.floor(-10 + 30 * Math.random()),
+  () => Math.floor(-5 + 10 * Math.random()),
   validateVolDb
 )

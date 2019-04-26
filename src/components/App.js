@@ -4,13 +4,17 @@ import NoteTableWrapperC from './NoteTableWrapperC'
 import StateViewerC from './StateViewerC'
 import NoteTableButtonBarC from './NoteTableButtonBarC'
 
-const App = () => (
+const App = ({noteTable}) => (
   <div className='app'>
     <div className='title'>Just Intonation Canvas</div>
     <div className='subtitle'>Web scoring for justly intoned music</div>
-    <NoteTableButtonBarC />
+    <NoteTableButtonBarC
+      noteTable={noteTable}
+    />
     <NoteTableWrapperC />
-    <NoteTableButtonBarC />
+    <NoteTableButtonBarC
+      noteTable={noteTable}
+    />
     <StateViewerC />
   </div>
 )

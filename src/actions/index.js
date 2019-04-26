@@ -16,6 +16,10 @@ export const playNote = ({idx}) => ({
   idx
 })
 
+export const playAllNotes = () => ({
+  type: 'PLAY_ALL_NOTES',
+})
+
 export const pauseNote = ({idx}) => ({
   type: 'PAUSE_NOTE',
   idx

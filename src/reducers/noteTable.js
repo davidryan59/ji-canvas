@@ -16,14 +16,6 @@ const noteTable = (state = [], action) => {
         ...state,
         noteRow(undefined, action)
       ]
-    case 'MOVE_UP':
-      const idxu = action.idx
-      return [
-        ...state.slice(0, idxu-1),
-        state[idxu],
-        state[idxu-1],
-        ...state.slice(idxu+1)
-      ]
     case 'MOVE_DOWN':
       const idxd = action.idx
       return [

@@ -27,11 +27,6 @@ export const moveDown = ({idx}) => ({
   idx
 })
 
-export const moveUp = ({idx}) => ({
-  type: 'MOVE_UP',
-  idx
-})
-
 export const unlockInput = ({noteId, inputName}) => ({
   type: 'ROW_UNLOCK',
   noteId,

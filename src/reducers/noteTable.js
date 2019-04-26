@@ -25,9 +25,9 @@ const noteTable = (state = [], action) => {
         ...state.slice(idxd+2)
       ]
     case 'DUP_NOTE':
-      return state.reduce( (accum, tRow) => {
+      return state.reduce( (accum, tRow, idx) => {
           accum.push(tRow)
-          if (tRow.noteId === action.noteId) accum.push({...tRow, noteId: action.newNoteId})
+          if (idx === action.idx) accum.push({...tRow, noteId: action.newNoteId})
           return accum
         }, []
       )

@@ -21,9 +21,9 @@ export const pauseNote = ({idx}) => ({
   idx
 })
 
-export const dupNote = ({noteId}) => ({
+export const dupNote = ({idx}) => ({
   type: 'DUP_NOTE',
-  noteId,
+  idx,
   newNoteId: nextNoteId++
 })
 

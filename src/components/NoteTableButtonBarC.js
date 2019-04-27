@@ -2,19 +2,30 @@ import { connect } from 'react-redux'
 
 import NoteTableButtonBar from './NoteTableButtonBar'
 
-import { playAllNotes as actionPlayAllNotes, addNote, doNothing } from '../actions'
+import { actionPlayAllNotes, actionStopAllNotes, actionAddNote, actionDoNothing } from '../actions'
 
-import { playAllNotes as audioPlayAllNotes } from '../audio'
+import { audioPlayAllNotes, audioStop } from '../audio'
 
 const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  addNote: () => dispatch(addNote()),
-  doNothing: () => dispatch(doNothing()),
+  doNothing: () => dispatch(actionDoNothing()),
+  addNote: () => dispatch(actionAddNote()),
   playAllNotes: () => {
-    audioPlayAllNotes(ownProps.noteTable)
-    return dispatch(actionPlayAllNotes())
+    const [audioStopIdx, delayStopTimeS] = audioPlayAllNotes(ownProps.noteTable)
+    setTimeout(() => {
+      console.log(`Timeout all notes: audio stop ${audioStopIdx}`)
+      audioStop(audioStopIdx)
+      dispatch(actionStopAllNotes({audioStopIdx}))
+    }, 1000 * delayStopTimeS)
+    return dispatch(actionPlayAllNotes({audioStopIdx}))
+  },
+  stopAllNotes: () => {
+    const idx = ownProps.audioStopIdx
+    console.log(`Button: stop all notes, audio stop ${idx}`)
+    audioStop(idx)
+    dispatch(actionStopAllNotes({audioStopIdx: idx}))
   }
 })
 

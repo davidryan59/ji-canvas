@@ -1,55 +1,80 @@
 import { startingIdValue } from '../constants'
 
+let nextActionId = startingIdValue
 let nextNoteId = startingIdValue
 
-export const doNothing = () => ({
+export const actionDoNothing = () => ({
   type: 'DO_NOTHING',
+  actionId: nextActionId++
 })
 
-export const addNote = () => ({
+export const actionAddNote = () => ({
   type: 'ADD_NOTE',
-  noteId: nextNoteId++
+  noteId: nextNoteId++,
+  actionId: nextActionId++
 })
 
-export const playNote = ({idx}) => ({
-  type: 'PLAY_NOTE',
-  idx
+export const actionPlayNote = ({noteId, audioStopIdx}) => ({
+  type: 'ROW_PLAY_NOTE',
+  noteId,
+  audioStopIdx,
+  actionId: nextActionId++
 })
 
-export const playAllNotes = () => ({
+export const actionStopNote = ({noteId, audioStopIdx}) => ({
+  type: 'ROW_STOP_NOTE',
+  noteId,
+  audioStopIdx,
+  actionId: nextActionId++
+})
+
+export const actionPlayAllNotes = ({audioStopIdx}) => ({
   type: 'PLAY_ALL_NOTES',
+  audioStopIdx,
+  actionId: nextActionId++
 })
 
-export const pauseNote = ({idx}) => ({
-  type: 'PAUSE_NOTE',
-  idx
+export const actionStopAllNotes = ({audioStopIdx}) => ({
+  type: 'STOP_ALL_NOTES',
+  audioStopIdx,
+  actionId: nextActionId++
 })
 
-export const dupNote = ({idx}) => ({
+export const actionDuplicateNote = ({noteId}) => ({
   type: 'DUP_NOTE',
-  idx,
-  newNoteId: nextNoteId++
+  noteId,
+  newNoteId: nextNoteId++,
+  actionId: nextActionId++
 })
 
-export const delNote = ({idx}) => ({
+export const actionDeleteNote = ({noteId}) => ({
   type: 'DEL_NOTE',
-  idx
+  noteId,
+  actionId: nextActionId++
 })
 
-export const moveDown = ({idx}) => ({
+export const actionMoveDown = ({noteId}) => ({
   type: 'MOVE_DOWN',
-  idx
+  noteId,
+  actionId: nextActionId++
 })
 
-export const unlockInput = ({noteId, inputName}) => ({
+export const actionMoveUp = ({noteId}) => ({
+  type: 'MOVE_UP',
+  noteId
+})
+
+export const actionUnlockInput = ({noteId, inputName}) => ({
   type: 'ROW_UNLOCK',
   noteId,
-  inputName
+  inputName,
+  actionId: nextActionId++
 })
 
-export const setInputBox = ({noteId, inputName, val}) => ({
+export const actionSetInput = ({noteId, inputName, val}) => ({
   type: 'ROW_SET',
   noteId,
   inputName,
-  val
+  val,
+  actionId: nextActionId++
 })

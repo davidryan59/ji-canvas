@@ -3,11 +3,11 @@ import { Column, Row } from 'simple-flexbox'
 
 import { flexValues } from '../constants'
 
-import { unlockInput, setInputBox } from '../actions'
+import { actionUnlockInput, actionSetInput } from '../actions'
 
 import InputBoxC from './InputBoxC'
 
-const NoteTableRow = ({idx, len, row, playNote, pauseNote, dupNote, delNote, moveDown, moveUp}) => (
+const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delNote, moveDown, moveUp}) => (
   <Row className='tableRow'>
     <Column className='tableCell' flex={flexValues.noteId} horizontal='center' vertical='center'>
       <span>{row.noteId}</span>
@@ -17,8 +17,8 @@ const NoteTableRow = ({idx, len, row, playNote, pauseNote, dupNote, delNote, mov
         inputName = "startMs"
         noteId = {row.noteId}
         data = {row.startMs}
-        onUnlock = {unlockInput}
-        onEditValue = {setInputBox}
+        onUnlock = {actionUnlockInput}
+        onEditValue = {actionSetInput}
       />
     </Column>
     <Column className='tableCell' flex={flexValues.lenMs} horizontal='center' vertical='center'>
@@ -26,8 +26,8 @@ const NoteTableRow = ({idx, len, row, playNote, pauseNote, dupNote, delNote, mov
         inputName = "lenMs"
         noteId = {row.noteId}
         data = {row.lenMs}
-        onUnlock = {unlockInput}
-        onEditValue = {setInputBox}
+        onUnlock = {actionUnlockInput}
+        onEditValue = {actionSetInput}
       />
     </Column>
     <Column className='tableCell' flex={flexValues.freqHz} horizontal='center' vertical='center'>
@@ -35,8 +35,8 @@ const NoteTableRow = ({idx, len, row, playNote, pauseNote, dupNote, delNote, mov
         inputName = "freqHz"
         noteId = {row.noteId}
         data = {row.freqHz}
-        onUnlock = {unlockInput}
-        onEditValue = {setInputBox}
+        onUnlock = {actionUnlockInput}
+        onEditValue = {actionSetInput}
       />
     </Column>
     <Column className='tableCell' flex={flexValues.volDb} horizontal='center' vertical='center'>
@@ -44,30 +44,40 @@ const NoteTableRow = ({idx, len, row, playNote, pauseNote, dupNote, delNote, mov
         inputName = "volDb"
         noteId = {row.noteId}
         data = {row.volDb}
-        onUnlock = {unlockInput}
-        onEditValue = {setInputBox}
+        onUnlock = {actionUnlockInput}
+        onEditValue = {actionSetInput}
       />
     </Column>
     <Column className='tableCell' flex={flexValues.actions} horizontal='center' vertical='center'>
       <Row>
-        <button className='play' onClick={playNote}>
-          &#x25b6;
-        </button>
-        &nbsp;
-        <button className='pause' onClick={pauseNote}>
-          ||
-        </button>
+        {
+          (canPlay)
+          ?
+          (
+            (row.audioStopIdx === null)
+            ?
+            <button className='play' onClick={playNote}>
+              &#x25b6;
+            </button>          
+            :
+            <button className='stop' onClick={stopNote}>
+              |=|
+            </button>          
+          )
+          :
+          null
+        }
         &nbsp;&nbsp;&nbsp;
         <button className='duplicate' onClick={dupNote}>
           +1
         </button>
         &nbsp;&nbsp;&nbsp;
-        <button onClick={moveDown} disabled={len<=idx+1?true:false} className={len<=idx+1?'move disabled':'move'}>
-          &#x25bc;
-        </button>
-        &nbsp;
         <button onClick={moveUp} disabled={idx<1?true:false} className={idx<1?'move disabled':'move'}>
           &#x25b2;
+        </button>
+        &nbsp;
+        <button onClick={moveDown} disabled={len<=idx+1?true:false} className={len<=idx+1?'move disabled':'move'}>
+          &#x25bc;
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button className='delete' onClick={delNote}>

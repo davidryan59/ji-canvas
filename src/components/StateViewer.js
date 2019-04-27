@@ -16,7 +16,7 @@ const StateViewer = ({actionJSON, stateJSON}) => (
       &nbsp;
     </Row>
     <Row>
-      <b>state.present.general.lastAction</b>:&nbsp;&nbsp;{actionJSON}
+      <b>state.present.lastAction</b>:&nbsp;&nbsp;{actionJSON}
     </Row>
     <Row>
       &nbsp;

@@ -2,24 +2,35 @@ import { connect } from 'react-redux'
 
 import NoteTableRow from './NoteTableRow'
 
-import { playNote as actionPlayNote, pauseNote, dupNote, delNote, moveDown } from '../actions'
+import { actionPlayNote, actionStopNote, actionDuplicateNote, actionDeleteNote, actionMoveDown, actionMoveUp } from '../actions'
 
-import { playNote as audioPlayNote } from '../audio'
+import { audioPlayNote, audioStop } from '../audio'
 
 const mapStateToProps = (state, ownProps) => ({
+  canPlay: (state.present.audioStopIdx === null)
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  dupNote: () => dispatch(dupNote({idx: ownProps.idx})),
-  delNote: () => dispatch(delNote({idx: ownProps.idx})),
-  moveDown: () => dispatch(moveDown({idx: ownProps.idx})),
-  moveUp: () => dispatch(moveDown({idx: ownProps.idx - 1})),
+  dupNote: () => dispatch(actionDuplicateNote({noteId: ownProps.row.noteId})),
+  delNote: () => dispatch(actionDeleteNote({noteId: ownProps.row.noteId})),
+  moveDown: () => dispatch(actionMoveDown({noteId: ownProps.row.noteId})),
+  moveUp: () => dispatch(actionMoveUp({noteId: ownProps.row.noteId})),
   playNote: () => {
-    const startNow = true
-    audioPlayNote(ownProps.row, startNow)
-    return dispatch(actionPlayNote({idx: ownProps.idx}))
+    const [audioStopIdx, delayStopTimeS] = audioPlayNote(ownProps.row)
+    setTimeout(() => {
+      console.log(`Timeout 1 note: audio stop ${audioStopIdx}`)
+      audioStop(audioStopIdx)
+      dispatch(actionStopNote({noteId: ownProps.row.noteId, audioStopIdx}))
+    }, 1000 * delayStopTimeS)
+    return dispatch(actionPlayNote({noteId: ownProps.row.noteId, audioStopIdx}))
   },
-  pauseNote: () => dispatch(pauseNote({idx: ownProps.idx}))
+  stopNote: () => {
+    const idx = ownProps.row.audioStopIdx
+    const noteId = ownProps.row.noteId
+    console.log(`Button: stop 1 note ${noteId}, audio stop ${idx}`)
+    audioStop(idx)
+    dispatch(actionStopNote({noteId: noteId, audioStopIdx: idx}))
+  }
 })
 
 export default connect(

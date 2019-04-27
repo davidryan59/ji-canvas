@@ -1,6 +1,6 @@
 import { validateStartMs, validateLenMs, validateFreqHz, validateVolDb } from '../validations'
 
-const inputBox = (state = {}, action, inputName, getInitialVal, validateInput) => {
+const noteCell = (state = {}, action, inputName, getInitialVal, validateInput) => {
   switch (action.type) {
     case 'ADD_NOTE':
       return {
@@ -35,27 +35,39 @@ export const noteId = (state = -1, action) => {
   }
 }
 
+export const audioStopIdx = (state = null, action) => {
+  switch (action.type) {
+    case 'PLAY_NOTE':
+      return action.audioStopIdx
+    case 'STOP_NOTE':
+      if (state === action.audioStopIdx) return null
+      return state
+    default:
+      return state
+  }
+}
+
 const startTimeIncrement = 80
 let nextStartTimeMs = 0
-export const startMs = (state, action) => inputBox(state, action,
+export const startMs = (state, action) => noteCell(state, action,
   'startMs',
   () => nextStartTimeMs += startTimeIncrement * Math.floor(1 + 4 * Math.random()),
   validateStartMs
 )
 
-export const lenMs = (state, action) => inputBox(state, action,
+export const lenMs = (state, action) => noteCell(state, action,
   'lenMs',
-  () => 200 * Math.floor(1 + 4 * Math.random()),
+  () => 100 * Math.floor(8 + 8 * Math.random()),
   validateLenMs
 )
 
-export const freqHz = (state, action) => inputBox(state, action,
+export const freqHz = (state, action) => noteCell(state, action,
   'freqHz',
-  () => 15 * Math.floor(3 + 64 * Math.random()),
+  () => 80 * Math.floor(3 + 10 * Math.random()),
   validateFreqHz
 )
 
-export const volDb = (state, action) => inputBox(state, action,
+export const volDb = (state, action) => noteCell(state, action,
   'volDb',
   () => Math.floor(-5 + 10 * Math.random()),
   validateVolDb

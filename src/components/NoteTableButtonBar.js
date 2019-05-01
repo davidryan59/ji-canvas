@@ -17,7 +17,7 @@ const NoteTableButtonBar = ({audioStopIdx, loadState, saveState, playAllNotes, s
     </Column>
     <Column className='buttonCell' flex={flexCol2} horizontal='center'>
       <button className="iconOnly" onClick={doNothing} tabIndex="-1">
-        Add canvas here
+        .
       </button>
     </Column>
     <Column className='buttonCell' flex={flexCol3} horizontal='center'>

@@ -8,15 +8,15 @@ const flexCol2 = '20'
 const flexCol3 = '10'
 const flexCol4 = '40'
 
-const NoteTableButtonBar = ({audioStopIdx, playAllNotes, stopAllNotes, addNote, doNothing}) => (
+const NoteTableButtonBar = ({audioStopIdx, loadState, saveState, playAllNotes, stopAllNotes, addNote, doNothing}) => (
   <Row className='buttonBar'>
     <Column className='buttonCell' flex={flexCol1} horizontal='start'>
-      <button className='mainAdd' onClick={addNote}>
+      <button className='mainAdd' onClick={addNote} tabIndex="-1">
         &nbsp;&nbsp; Add &nbsp;&nbsp; + &nbsp;&nbsp;
       </button>
     </Column>
     <Column className='buttonCell' flex={flexCol2} horizontal='center'>
-      <button className="iconOnly" onClick={doNothing}>
+      <button className="iconOnly" onClick={doNothing} tabIndex="-1">
         Add canvas here
       </button>
     </Column>
@@ -29,16 +29,20 @@ const NoteTableButtonBar = ({audioStopIdx, playAllNotes, stopAllNotes, addNote, 
           (audioStopIdx === null)
           ?
           <span>
-            <button className='save'>
-              SAVE (WIP)
+            <button className='load' onClick={loadState} tabIndex="-1">
+              Load
+            </button>
+            &nbsp;&nbsp;
+            <button className='save' onClick={saveState} tabIndex="-1">
+              Save
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className='play' onClick={playAllNotes}>
+            <button className='play' onClick={playAllNotes} tabIndex="-1">
               &nbsp;&nbsp;&#x25b6;&nbsp;&nbsp;
             </button>
           </span>
           :    
-          <button className='stop' onClick={stopAllNotes}>
+          <button className='stop' onClick={stopAllNotes} tabIndex="-1">
             |=|
           </button>
         }

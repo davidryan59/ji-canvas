@@ -7,7 +7,7 @@ const InputBox = ({preLabel, data, postLabel, onUnlock, onEditValue}) => (
       ?
       ""
       :
-      <button onClick={onUnlock} className="iconOnly">
+      <button onClick={onUnlock} className="iconOnly" tabIndex="-1">
         &#x270E;
       </button>
     }    

@@ -8,6 +8,16 @@ export const actionDoNothing = () => ({
   actionId: nextActionId++
 })
 
+export const actionLoadState = () => ({
+  type: 'LOAD_STATE',
+  actionId: nextActionId++
+})
+
+export const actionSaveState = () => ({
+  type: 'SAVE_STATE',
+  actionId: nextActionId++
+})
+
 export const actionAddNote = () => ({
   type: 'ADD_NOTE',
   noteId: nextNoteId++,

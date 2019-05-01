@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import StateViewer from './StateViewer'
 
-const whitespaceChars = 1    // Select 0 or 1. HTML won't display more than 1.
+const whitespaceChars = 0    // Select 0 or 1. HTML won't display more than 1.
 
 const mapStateToProps = (state, ownProps) => ({
   actionJSON: JSON.stringify(state.present.lastAction, null, whitespaceChars),

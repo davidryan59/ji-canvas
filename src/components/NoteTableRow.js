@@ -19,6 +19,7 @@ const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delN
         data = {row.startMs}
         onUnlock = {actionUnlockInput}
         onEditValue = {actionSetInput}
+        tabIndex = "1"
       />
     </Column>
     <Column className='tableCell' flex={flexValues.lenMs} horizontal='center' vertical='center'>
@@ -28,6 +29,7 @@ const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delN
         data = {row.lenMs}
         onUnlock = {actionUnlockInput}
         onEditValue = {actionSetInput}
+        tabIndex = "2"
       />
     </Column>
     <Column className='tableCell' flex={flexValues.freqHz} horizontal='center' vertical='center'>
@@ -37,6 +39,7 @@ const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delN
         data = {row.freqHz}
         onUnlock = {actionUnlockInput}
         onEditValue = {actionSetInput}
+        tabIndex = "3"
       />
     </Column>
     <Column className='tableCell' flex={flexValues.volDb} horizontal='center' vertical='center'>
@@ -46,6 +49,7 @@ const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delN
         data = {row.volDb}
         onUnlock = {actionUnlockInput}
         onEditValue = {actionSetInput}
+        tabIndex = "4"
       />
     </Column>
     <Column className='tableCell' flex={flexValues.actions} horizontal='center' vertical='center'>
@@ -56,11 +60,11 @@ const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delN
           (
             (row.audioStopIdx === null)
             ?
-            <button className='play' onClick={playNote}>
+            <button className='play' onClick={playNote} tabIndex="-1">
               &#x25b6;
             </button>          
             :
-            <button className='stop' onClick={stopNote}>
+            <button className='stop' onClick={stopNote} tabIndex="-1">
               |=|
             </button>          
           )
@@ -68,19 +72,19 @@ const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delN
           null
         }
         &nbsp;&nbsp;&nbsp;
-        <button className='duplicate' onClick={dupNote}>
+        <button className='duplicate' onClick={dupNote} tabIndex="-1">
           +1
         </button>
         &nbsp;&nbsp;&nbsp;
-        <button onClick={moveUp} disabled={idx<1?true:false} className={idx<1?'move disabled':'move'}>
+        <button onClick={moveUp} disabled={idx<1?true:false} className={idx<1?'move disabled':'move'} tabIndex="-1">
           &#x25b2;
         </button>
         &nbsp;
-        <button onClick={moveDown} disabled={len<=idx+1?true:false} className={len<=idx+1?'move disabled':'move'}>
+        <button onClick={moveDown} disabled={len<=idx+1?true:false} className={len<=idx+1?'move disabled':'move'} tabIndex="-1">
           &#x25bc;
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button className='delete' onClick={delNote}>
+        <button className='delete' onClick={delNote} tabIndex="-1">
           X
         </button>
       </Row>

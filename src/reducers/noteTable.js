@@ -1,6 +1,41 @@
 import noteRow from './noteRow'
 
-const noteTable = (state = [], action) => {
+const localStorageKey = 'noteTable'
+let initialState = null
+
+const loadNoteTable = () => {
+  if (initialState) return initialState
+  if (typeof(Storage) !== "undefined") {
+    console.log('Accessing local storage to load note table')
+    initialState = JSON.parse(localStorage.getItem(localStorageKey))
+    if (initialState) {
+      console.log('Note table loaded from local storage:')
+      console.log(initialState)
+    } else {
+      console.log('No note table in local storage, initialising empty note table')
+      initialState = []
+    }
+  } else {
+    console.log('Cannot access local storage, initialising empty note table')
+    return []
+  }
+  return initialState
+}
+
+const saveNoteTable = (noteTableStateToSave) => {
+  if (typeof(Storage) !== "undefined") {
+    console.log('Accessing local storage to save...')
+    localStorage.setItem(localStorageKey, JSON.stringify(noteTableStateToSave))
+    console.log('Note table saved to local storage:')
+    console.log(localStorage[localStorageKey])
+  } else {
+    console.log('Cannot access local storage')
+  }
+  return noteTableStateToSave
+}
+
+const noteTable = (state = loadNoteTable(), action) => {
+  console.log(action)
 
   const prefix = 'ROW_'
   const prefixLength = prefix.length
@@ -9,6 +44,13 @@ const noteTable = (state = [], action) => {
     const newAction = {...action, type: action.type.substr(prefixLength)}
     return state.map( tRow => (tRow.noteId === action.noteId) ? noteRow(tRow, newAction) : tRow )
   }
+  
+  if (action.type === 'LOAD_STATE') {
+    console.log('LOAD_STATE in noteTable reducer - currently does nothing')
+    return state
+  }
+  
+  if (action.type === 'SAVE_STATE') return saveNoteTable(state)
   
   if (action.type === 'ADD_NOTE') return [...state, noteRow(undefined, action)]
 

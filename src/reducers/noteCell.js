@@ -5,7 +5,7 @@ const noteCell = (state = {}, action, inputName, getInitialVal, validateInput) =
     case 'ADD_NOTE':
       return {
         val: getInitialVal(),
-        editing: undefined
+        editing: true
       }
     case 'UNLOCK':
       if (inputName !== action.inputName) return state

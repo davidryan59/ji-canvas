@@ -7,8 +7,8 @@ import audioStopIdx from './audioStopIdx'
 
 const globalReducer = combineReducers({
   noteTable,
-  lastAction,
-  audioStopIdx
+  audioStopIdx,
+  lastAction
 })
 
 const globalUndoableReducer = undoable(globalReducer, {limit: 50})

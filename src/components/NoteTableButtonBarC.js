@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import NoteTableButtonBar from './NoteTableButtonBar'
 
-import { actionPlayAllNotes, actionStopAllNotes, actionAddNote, actionDoNothing } from '../actions'
+import { actionLoadState, actionSaveState, actionPlayAllNotes, actionStopAllNotes, actionAddNote, actionDoNothing } from '../actions'
 
 import { audioPlayAllNotes, audioStop } from '../audio'
 
@@ -10,6 +10,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadState: () => dispatch(actionLoadState()),
+  saveState: () => dispatch(actionSaveState()),
   doNothing: () => dispatch(actionDoNothing()),
   addNote: () => dispatch(actionAddNote()),
   playAllNotes: () => {

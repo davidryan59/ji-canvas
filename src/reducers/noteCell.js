@@ -7,6 +7,11 @@ const noteCell = (state = {}, action, inputName, getInitialVal, validateInput) =
         val: getInitialVal(),
         editing: true
       }
+    case 'DUP_NOTE':
+      return {
+        ...state,
+        editing: true
+      }
     case 'UNLOCK':
       if (inputName !== action.inputName) return state
       return {
@@ -15,12 +20,10 @@ const noteCell = (state = {}, action, inputName, getInitialVal, validateInput) =
       }
     case 'SET':
       if (inputName !== action.inputName) return state
-      const [isValid, val] = validateInput(state.val, action.val)
-      return {
-        ...state,
-        editing: (isValid?undefined:true),
-        val
-      }
+      const [isValid, checkedVal] = validateInput(state.val, action.val)
+      const result = {...state, val:checkedVal}
+      if (isValid) delete result.editing
+      return result
     default:
       return state
   }

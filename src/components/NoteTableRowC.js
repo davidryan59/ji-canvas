@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   stopNote: () => {
     const idx = ownProps.row.audioStopIdx
     const noteId = ownProps.row.noteId
-    console.log(`Button: stop 1 note ${noteId}, audio stop ${idx}`)
+    console.log(`Button: stop 1 note, audio stop ${idx}`)
     audioStop(idx)
     dispatch(actionStopNote({noteId: noteId, audioStopIdx: idx}))
   }

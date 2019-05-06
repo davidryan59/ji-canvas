@@ -9,9 +9,6 @@ import InputBoxC from './InputBoxC'
 
 const NoteTableRow = ({idx, len, row, canPlay, playNote, stopNote, dupNote, delNote, moveDown, moveUp}) => (
   <Row className='tableRow'>
-    <Column className='tableCell' flex={flexValues.noteId} horizontal='center' vertical='center'>
-      <span>{row.noteId}</span>
-    </Column>
     <Column className='tableCell' flex={flexValues.startMs} horizontal='center' vertical='center'>
       <InputBoxC
         inputName = "startMs"

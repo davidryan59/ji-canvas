@@ -5,9 +5,6 @@ import { flexValues } from '../constants'
 
 const NoteTableHeader = () => (
   <Row className='tableHeader' horizontal='center'>
-    <Column className='headerCell' flex={flexValues.noteId} horizontal='center'>
-      Id
-    </Column>
     <Column className='headerCell' flex={flexValues.startMs} horizontal='center'>
       Start Time (ms)
     </Column>

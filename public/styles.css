@@ -52,6 +52,13 @@ button.disabled {
   cursor: default;
 }
 
+.mainScore {
+  border: 1px #999 solid;
+  background-color: #EEE;
+  border-radius: 5px;
+  align: center;
+}
+
 .buttonBarTitle {
   color: #F00;
   text-align: left;

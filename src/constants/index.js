@@ -1,6 +1,3 @@
-// ID values
-export const startingIdValue = 100
-
 // Control sound
 export const oscType = 'triangle'
 export const initialDelayTimeMs = 1
@@ -10,7 +7,6 @@ export const maxNoteTimeMs = 5000
 
 // Column widths in table
 export const flexValues = {
-  noteId: '8',
   startMs: '12',
   lenMs: '12',
   freqHz: '12',
